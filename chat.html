@@ -1,18 +1,45 @@
-<ul>
-    <li ng-repeat="message in messages">
+<!DOCTYPE html>
 
-        <img src ="{{avatarUrl(message.sender_uuid)}}" alt="{{avatarUrl(message.sender_uuid)}}"/>
+<html>
 
-        <span class="title">Anonymous robot #{{ message.sender_uuid }}</span>
+    <head>
+        <title>Angular Chat App</title>
 
-       <p>{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</br> {{ message.content }}</p>
+        <!-- load angular and angular route via CDN -->
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 
-    </li>
-</ul>
+          <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>
+<script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
 
-<div ng-controller="ChatCtrl">
-    <form ng-submit="sendMessage()">
-        <input ng-model="messageContent", type="text", placeholder="Type your message"/>
-        <button type="submit">Send</button>
-    </form>
-</div>
+          <script src="chat_ctrl.js"></script>
+
+    </head>
+
+    <body ng-app="app" ng-controller="ChatCtrl">
+
+
+        <div>
+            <ul>
+                <li ng-repeat="message in messages">
+
+                    <img src ="{{avatarUrl(message.sender_uuid)}}" alt="{{avatarUrl(message.sender_uuid)}}"/>
+
+                    <span class="title">Anonymous robot #{{ message.sender_uuid }}</span>
+
+                    <p>{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</br> {{ message.content }}</p>
+
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <form ng-submit="sendMessage()">
+                <input ng-model="messageContent", type="text", placeholder="Type your message"/>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+
+    </body>
+
+</html>
