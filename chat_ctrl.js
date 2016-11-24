@@ -3,6 +3,7 @@ var app = angular.module("app",["pubnub.angular.service"]);
 app.controller("ChatCtrl", function ($scope, Pubnub) {
 
     $scope.channel = "messages-channel";
+    $scope.messages = [];
     // Generating a random uuid between 1 and 100 using an utility function from the lodash library.
     $scope.uuid = _.random(100).toString();
 
@@ -38,5 +39,26 @@ app.controller("ChatCtrl", function ($scope, Pubnub) {
             }
         });
 
+        // Reset the messageContent input
+        $scope.messageContent = '';
     };
+
+    // subscribe to messages-channel and triggering the message callback
+    Pubnub.subscribe({
+        channel: $scope.channel,
+        triggerEvents: ["callback"]
+
+    });
+
+    $scope.on(Pubnub.getMessageEventNameFor($scope.channel), function (ngEvent, m) {
+
+        $scope.$apply(function () {
+            $scope.messages.push(m);
+        });
+    });
+
+    $scope.avatarUrl = function (uuid) {
+        return 'http://robohash.org/'+uuid+'?set=set2&bgset=bg2&size=70x70';
+    };
+    
 });
