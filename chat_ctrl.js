@@ -21,7 +21,7 @@ app.controller("ChatCtrl", function ($scope, Pubnub) {
             return;
         }
 
-        $scope.publish({
+        Pubnub.publish({
             channel: $scope.channel,
             message: {
                 content: $scope.messageContent,
@@ -50,7 +50,7 @@ app.controller("ChatCtrl", function ($scope, Pubnub) {
 
     });
 
-    $scope.on(Pubnub.getMessageEventNameFor($scope.channel), function (ngEvent, m) {
+    $scope.$on(Pubnub.getMessageEventNameFor($scope.channel), function (ngEvent, m) {
 
         $scope.$apply(function () {
             $scope.messages.push(m);
@@ -60,5 +60,5 @@ app.controller("ChatCtrl", function ($scope, Pubnub) {
     $scope.avatarUrl = function (uuid) {
         return 'http://robohash.org/'+uuid+'?set=set2&bgset=bg2&size=70x70';
     };
-    
+
 });
