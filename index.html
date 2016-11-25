@@ -26,34 +26,42 @@
 
     </head>
 
-    <body ng-app="app" ng-controller="ChatCtrl">
+    <body ng-app="app">
+
+        <div class="container" ng-controller="ChatCtrl">
+        <!-- Page Content goes here -->
+
+            <div>
+                <ul>
+                    <li ng-repeat="message in messages">
+
+                        <img src ="{{avatarUrl(message.sender_uuid)}}" alt="{{avatarUrl(message.sender_uuid)}}"/>
+
+                        <span class="title">Anonymous robot #{{ message.sender_uuid }}</span>
+
+                        <p>{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</br> {{ message.content }}</p>
+
+                    </li>
+                </ul>
+            </div>
 
 
-        <div>
-            <ul>
-                <li ng-repeat="message in messages">
+            <div>
+                <form ng-submit="sendMessage()">
 
-                    <img src ="{{avatarUrl(message.sender_uuid)}}" alt="{{avatarUrl(message.sender_uuid)}}"/>
+                    <div input-field>
+                        <input ng-model="messageContent", type="text", placeholder="Type your message" length="150">
+                        <!-- <label>Input label</label> -->
+                    </div>
 
-                    <span class="title">Anonymous robot #{{ message.sender_uuid }}</span>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
 
-                    <p>{{ message.date | date:"MM/dd/yyyy 'at' h:mma"}}</br> {{ message.content }}</p>
 
-                </li>
-            </ul>
-        </div>
 
-        <div>
-            <form ng-submit="sendMessage()">
-                <!-- <input ng-model="messageContent", type="text", placeholder="Type your message"/> -->
-
-                <div input-field>
-                    <input ng-model="messageContent", type="text", placeholder="Type your message" length="150">
-                    <label>Input label</label>
-                </div>
-
-                <button type="submit">Send</button>
-            </form>
         </div>
 
     </body>
