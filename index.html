@@ -5,14 +5,24 @@
     <head>
         <title>Angular Chat App</title>
 
-        <!-- load angular and angular route via CDN -->
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 
-          <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>
-<script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
+        <!-- JavaScript for: jQuery, angular, materialize, and angular-materialize. All of which are needed. -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+        <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script> -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
+
+
+        <!-- load angular and angular route via CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+        <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>
+        <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.js"></script>
 
-          <script src="chat_ctrl.js"></script>
+        <script src="chat_ctrl.js"></script>
 
     </head>
 
@@ -35,7 +45,13 @@
 
         <div>
             <form ng-submit="sendMessage()">
-                <input ng-model="messageContent", type="text", placeholder="Type your message"/>
+                <!-- <input ng-model="messageContent", type="text", placeholder="Type your message"/> -->
+
+                <div input-field>
+                    <input ng-model="messageContent", type="text", placeholder="Type your message" length="150">
+                    <label>Input label</label>
+                </div>
+
                 <button type="submit">Send</button>
             </form>
         </div>
